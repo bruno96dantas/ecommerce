@@ -1,4 +1,4 @@
-package br.com.bruno.ecommerce.ecommerce;
+package br.com.bruno.ecommerce;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
