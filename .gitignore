@@ -22,4 +22,7 @@
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/.mvn\
+/.nb-gradle/
+mvnw
+mvnw.cmd
+.mvn/
