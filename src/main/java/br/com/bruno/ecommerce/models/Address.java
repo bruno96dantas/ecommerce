@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Data
 @Builder
 @Table
-class Address {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

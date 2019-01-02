@@ -14,7 +14,7 @@ import java.util.Set;
 @Data
 @Builder
 @Table
-class Cart {
+public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

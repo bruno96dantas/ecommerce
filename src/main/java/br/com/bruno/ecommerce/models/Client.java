@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "clientType")
 @Table
-class Client {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
