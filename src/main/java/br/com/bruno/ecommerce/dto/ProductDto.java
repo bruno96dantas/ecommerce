@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductDto {
 
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
     private Integer pages;

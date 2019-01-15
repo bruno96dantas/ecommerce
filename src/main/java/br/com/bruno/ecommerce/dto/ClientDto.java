@@ -14,10 +14,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ClientDto {
 
-    private Integer id;
+    private Long id;
     private String email;
     private String password;
-    private Cart cart;
     private Address address;
     private ClientType clientType;
 }
