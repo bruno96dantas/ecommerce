@@ -1,5 +1,6 @@
 package br.com.bruno.ecommerce.services;
 
+import br.com.bruno.ecommerce.converters.ProductConverter;
 import br.com.bruno.ecommerce.dto.ProductDto;
 import br.com.bruno.ecommerce.models.Product;
 import br.com.bruno.ecommerce.repositories.ProductRepository;
@@ -22,11 +23,13 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ProductConverter productConverter;
 
     @Transactional
     public ProductDto create(ProductDto dto) {
 
-        Product product = convert(dto);
+        Product product = productConverter.convert(dto);
 
         product = productRepository.save(product);
 
@@ -50,7 +53,7 @@ public class ProductService {
 
         product = productRepository.save(product);
 
-        return unConvert(product);
+        return productConverter.unConvert(product);
 
     }
 
@@ -60,7 +63,7 @@ public class ProductService {
         List<Product> productList = productRepository.findAll();
 
         return productList.stream()
-                .map(this::unConvert)
+                .map(x -> productConverter.unConvert(x))
                 .collect(toList());
 
 //        List<ProductDto> productDtoList = new ArrayList<>();
@@ -78,22 +81,4 @@ public class ProductService {
 
     }
 
-    private Product convert(ProductDto dto) {
-        return Product.builder()
-                .description(dto.getDescription())
-                .title(dto.getTitle())
-                .pages(dto.getPages())
-                .price(dto.getPrice())
-                .build();
-    }
-
-    private ProductDto unConvert(Product product) {
-        return ProductDto.builder()
-                .id(product.getId())
-                .description(product.getDescription())
-                .title(product.getTitle())
-                .pages(product.getPages())
-                .price(product.getPrice())
-                .build();
-    }
 }
