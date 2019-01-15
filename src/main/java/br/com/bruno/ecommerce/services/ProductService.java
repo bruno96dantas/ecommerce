@@ -72,7 +72,7 @@ public class ProductService {
 //        return productDtoList;
     }
 
-    public void delete(Integer productId) {
+    public void delete(Long productId) {
 
         productRepository.deleteById(productId);
 
