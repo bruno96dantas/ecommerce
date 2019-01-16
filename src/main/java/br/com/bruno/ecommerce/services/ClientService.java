@@ -27,6 +27,9 @@ public class ClientService {
     public ClientDto create(ClientDto clientDto) {
         Client client = clientConverter.convert(clientDto);
 
+        // criar o Address nesse momento
+
+
         client = clientRepository.save(client);
 
         clientDto.setId(client.getId());
