@@ -17,6 +17,10 @@ public class ClientDto {
     private Long id;
     private String email;
     private String password;
+    private String name;
+    private String cpf;
+    private String company;
+    private String cnpj;
     private Address address;
     private ClientType clientType;
 }

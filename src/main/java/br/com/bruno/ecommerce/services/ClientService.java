@@ -3,6 +3,8 @@ package br.com.bruno.ecommerce.services;
 import br.com.bruno.ecommerce.converters.ClientConverter;
 import br.com.bruno.ecommerce.dto.ClientDto;
 import br.com.bruno.ecommerce.models.Client;
+import br.com.bruno.ecommerce.models.PessoaFisica;
+import br.com.bruno.ecommerce.models.PessoaJuridica;
 import br.com.bruno.ecommerce.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +28,6 @@ public class ClientService {
     @Transactional
     public ClientDto create(ClientDto clientDto) {
         Client client = clientConverter.convert(clientDto);
-
-        // criar o Address nesse momento
-
 
         client = clientRepository.save(client);
 

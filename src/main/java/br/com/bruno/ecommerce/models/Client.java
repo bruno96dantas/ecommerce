@@ -8,7 +8,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "clientType")
 @Table
@@ -24,7 +23,7 @@ public class Client {
     @OneToOne
     private Cart cart;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
     @Enumerated(EnumType.STRING)
