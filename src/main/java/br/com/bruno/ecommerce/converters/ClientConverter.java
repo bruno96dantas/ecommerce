@@ -11,7 +11,7 @@ public class ClientConverter implements Convert<Client, ClientDto> {
 
     @Override
     public Client convert(ClientDto dto) {
-        Client client = new Client();
+        Client client = null;
 
         switch (dto.getClientType()) {
             case PF:
@@ -22,7 +22,7 @@ public class ClientConverter implements Convert<Client, ClientDto> {
                         .cpf(dto.getCpf())
                         .address(dto.getAddress())
                         .build();
-
+                break;
             case PJ:
                 client = PessoaJuridica.builder()
                         .email(dto.getEmail())
@@ -31,8 +31,8 @@ public class ClientConverter implements Convert<Client, ClientDto> {
                         .cnpj(dto.getCnpj())
                         .address(dto.getAddress())
                         .build();
+                break;
         }
-
         return client;
     }
 
