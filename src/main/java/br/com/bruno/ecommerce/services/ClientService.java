@@ -3,6 +3,7 @@ package br.com.bruno.ecommerce.services;
 import br.com.bruno.ecommerce.converters.ClientConverter;
 import br.com.bruno.ecommerce.dto.ClientDto;
 import br.com.bruno.ecommerce.models.Client;
+import br.com.bruno.ecommerce.models.ClientType;
 import br.com.bruno.ecommerce.models.PessoaFisica;
 import br.com.bruno.ecommerce.models.PessoaJuridica;
 import br.com.bruno.ecommerce.repositories.ClientRepository;
@@ -42,10 +43,19 @@ public class ClientService {
         Client client = clientRepository.findById(clientDto.getId())
                 .orElseThrow(() -> new EntityNotFoundException(clientDto.getId() + " Not found!"));
 
-        client.setEmail(clientDto.getEmail());
-        client.setPassword(clientDto.getPassword());
-        client.setAddress(clientDto.getAddress());
-        client.setClientType(clientDto.getClientType());
+        if (client.getClientType().equals(ClientType.PF)) {
+            client.setEmail(clientDto.getEmail());
+            client.setPassword(clientDto.getPassword());
+            client.setAddress(clientDto.getAddress());
+            ((PessoaFisica) client).setName(clientDto.getName());
+            ((PessoaFisica) client).setCpf(clientDto.getCpf());
+        } else if (client.getClientType().equals(ClientType.PJ)) {
+            client.setEmail(clientDto.getEmail());
+            client.setPassword(clientDto.getPassword());
+            client.setAddress(clientDto.getAddress());
+            ((PessoaJuridica) client).setCompany(clientDto.getCompany());
+            ((PessoaJuridica) client).setCnpj(clientDto.getCnpj());
+        }
 
         client = clientRepository.save(client);
 
